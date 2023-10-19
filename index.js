@@ -13,7 +13,7 @@
 
     function searchNearbyPlaces() {
         var category = document.getElementById('field').value;
-        var apiKey = ''
+        var apiKey = '';
 
 
         searchResults.clearLayers();
@@ -39,11 +39,11 @@
     }
 
     var script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_PLACES_API_KEY&libraries=places';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&libraries=places';
     document.body.appendChild(script);
 
 
-    
+/*   
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-
+/*
 
 //Get user location
 
