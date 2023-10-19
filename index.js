@@ -1,18 +1,143 @@
-//FourSquare API
+    var map = L.map('map').setView([33.2036, -117.2414], 13);
+
+    var searchResults = L.layerGroup().addTo(map);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    document.getElementById("searchButton").addEventListener('click', function() {
+        searchNearbyPlaces();
+    });
+
+    function searchNearbyPlaces() {
+        var category = document.getElementById('field').value;
+        var apiKey = ''
 
 
- 
+        searchResults.clearLayers();
+
+        var request = {
+            location: new google.maps.LatLng(33.2036, -117.2414),
+            radius: 1500,
+            type: [category],
+        };
+
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, function(results, status) {
+            if(status === google.maps.places.PlacesServiceStatus.OK ) {
+                for(var i = 0; i < results.length; i++) {
+                    var place = results [i];
+
+                    var marker = L.marker([place.geometry.location.lat(), place.geometry.location.lng()])
+                        .bindPopup(place.name);
+                    searchResults.addLayer(marker);
+                }
+            }
+        });
+    }
+
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_PLACES_API_KEY&libraries=places';
+    document.body.appendChild(script);
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Get user location
 
-const myMap = {
+/*const myMap = {
     coordinates: [],
     businesses: [],
     map: {},
-    markers: {},
-    
+    markers: {},*/
 
+    
+    
+/*
 
     buildMap: function(){
             this.map = L.map('map', {
@@ -64,8 +189,7 @@ document.getElementById('submit').addEventListener('click', async (event) => {
 })
 
 
-//var map = L.map('map').setView([33.2036, -117.2414], 13);
-//var marker = L.marker([33.2036, -117.2414]).addTo(map);
+*/
 
 
 
